@@ -140,9 +140,13 @@ https://github.com/mel418/modo-matcha-sales-scout
 
 ## Live demo link
 
-[leave blank — optional field, only a scoring bonus. A rushed deployment this late risks
-breaking something right before submitting; the README's "built vs. designed" section already
-explains why there's no hosted endpoint for this submission.]
+https://claude.ai/code/artifact/762ed54d-ee97-4021-8c68-8ac692caa172
+
+A static showcase page — three real, unedited runs (95, 88, 45 out of 100, so the score
+spread is visible) with source links and drafted emails. No backend, no live agent
+invocation, so there's nothing for a visitor to cost you. **Before using this link, open
+it and confirm it's set to shareable/public** — artifacts are private by default, and a
+judge hitting a sign-in wall is worse than leaving the field blank.
 
 ## Testing instructions (Devpost "if applicable" field)
 
