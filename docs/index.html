@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Modo Matcha Showcase</title>
+<meta name="description" content="Three real, unedited runs of the Modo Matcha Sales Scout agent — live search, live Bedrock reasoning, real verified leads. Static archive, no live invocation.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8D%B5</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Libre+Franklin:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F3F0E3;
+    --surface: #EAE5D2;
+    --surface-2: #E0D9C0;
+    --ink: #1C2116;
+    --ink-soft: #52573F;
+    --line: #D2CAAC;
+    --accent: #62762F;
+    --accent-strong: #4A5C22;
+    --accent-2: #A8823C;
+    --bar-track: #DCD5BC;
+    --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --font-body: 'Libre Franklin', 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12150D; --surface: #1A1F13; --surface-2: #232A17;
+      --ink: #ECE7D5; --ink-soft: #AEAC90; --line: #333A22;
+      --accent: #9DB35A; --accent-strong: #B4C874; --accent-2: #D2AD68;
+      --bar-track: #2A301B;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12150D; --surface: #1A1F13; --surface-2: #232A17;
+    --ink: #ECE7D5; --ink-soft: #AEAC90; --line: #333A22;
+    --accent: #9DB35A; --accent-strong: #B4C874; --accent-2: #D2AD68;
+    --bar-track: #2A301B;
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 600; text-wrap: balance; }
+  a { color: var(--accent-strong); }
+  img { max-width: 100%; }
+
+  .page { max-width: 78rem; margin: 0 auto; padding: clamp(2rem, 5vw, 4rem) clamp(1.3rem, 4vw, 3rem); }
+
+  header.hero { max-width: 46rem; margin-bottom: clamp(2.5rem, 6vw, 3.5rem); }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.9rem;
+  }
+  header.hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.1rem); line-height: 1.05; margin-bottom: 0.9rem; }
+  header.hero p { font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--ink-soft); line-height: 1.6; max-width: 42rem; }
+  header.hero p.note {
+    margin-top: 1.1rem; font-family: var(--font-mono); font-size: 0.82rem;
+    color: var(--accent-strong); border-left: 2px solid var(--accent); padding-left: 0.9rem;
+  }
+  .repo-link {
+    display: inline-block; margin-top: 1.3rem; font-family: var(--font-mono);
+    font-size: 0.85rem; color: var(--ink); text-decoration: none;
+    border-bottom: 1px solid var(--accent-2); padding-bottom: 2px;
+  }
+  .repo-link:hover { color: var(--accent-strong); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.4rem;
+  }
+
+  .result {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.6rem 1.7rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .result .name { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; margin-bottom: 0.15rem; }
+  .result .domain { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 1.1rem; }
+
+  .field { margin-bottom: 0.9rem; }
+  .field .k {
+    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.3rem;
+  }
+  .field .v { font-size: 0.92rem; line-height: 1.5; }
+  .field .v a { word-break: break-all; }
+
+  .score-row { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.3rem; }
+  .score-num { font-family: var(--font-display); font-size: 1.7rem; color: var(--accent-strong); }
+  .score-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+  .score-bar { height: 6px; border-radius: 3px; background: var(--bar-track); overflow: hidden; margin-bottom: 1rem; }
+  .score-bar span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+
+  .reasons { margin: 0 0 0.2rem; padding-left: 1.1rem; font-size: 0.88rem; line-height: 1.5; }
+  .reasons li { margin-bottom: 0.35rem; }
+  .reasons li:last-child { margin-bottom: 0; }
+
+  details.email { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); }
+  details.email summary {
+    cursor: pointer; font-family: var(--font-mono); font-size: 0.74rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-strong);
+    list-style: none; display: flex; align-items: center; gap: 0.4rem;
+  }
+  details.email summary::-webkit-details-marker { display: none; }
+  details.email summary::before { content: "+"; font-family: var(--font-mono); }
+  details.email[open] summary::before { content: "\2212"; }
+  .email-box { margin-top: 0.9rem; background: var(--surface-2); border-radius: 6px; padding: 1.1rem 1.2rem; }
+  .email-subject { font-family: var(--font-display); font-weight: 600; font-size: 1rem; margin-bottom: 0.6rem; }
+  .email-body { font-size: 0.87rem; line-height: 1.6; white-space: pre-wrap; color: var(--ink); }
+
+  footer {
+    margin-top: clamp(2.5rem, 6vw, 3.5rem);
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  footer a { color: var(--accent-strong); }
+
+  @media (max-width: 480px) {
+    .score-row { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <div class="eyebrow">Mōdō Matcha Sales Scout</div>
+    <h1>Three real runs. Unedited.</h1>
+    <p>Every result below came from a live run of the agent — live web search via Tavily,
+      live reasoning on Amazon Bedrock, real companies with real sources. Nothing here was
+      touched up after the fact.</p>
+    <p class="note">This page is a static archive — it doesn't call Tavily or Bedrock, and
+      there's nothing here for a visitor to trigger. To run it live yourself, clone the repo.</p>
+    <a class="repo-link" href="https://github.com/mel418/modo-matcha-sales-scout" target="_blank" rel="noopener">github.com/mel418/modo-matcha-sales-scout &rarr;</a>
+  </header>
+
+  <div class="grid">
+
+    <div class="result">
+      <div class="name">Erewhon Market</div>
+      <div class="domain">erewhon.com</div>
+
+      <div class="field">
+        <div class="k">Signal</div>
+        <div class="v">Signed a lease and announced their first Orange County location in Costa Mesa (20,092 sq ft), opening September 2027.</div>
+      </div>
+      <div class="field">
+        <div class="k">Source</div>
+        <div class="v"><a href="https://erewhon.com/locations" target="_blank" rel="noopener">erewhon.com/locations</a></div>
+      </div>
+
+      <div class="score-row">
+        <span class="score-num">95</span><span class="score-label">/ 100 &middot; brand activation</span>
+      </div>
+      <div class="score-bar"><span style="width:95%"></span></div>
+
+      <ul class="reasons">
+        <li>First Orange County expansion for a premium wellness brand — a milestone likely to feature a grand opening event</li>
+        <li>Recent Erewhon openings drew hundreds of fans with influencer presence, a strong activation precedent</li>
+        <li>Costa Mesa is squarely in Modo Matcha's core LA/OC service area</li>
+      </ul>
+
+      <details class="email">
+        <summary>View the drafted email</summary>
+        <div class="email-box">
+          <div class="email-subject">Matcha bar for Erewhon Costa Mesa's grand opening?</div>
+          <div class="email-body">Hi there,
+
+Congrats on signing the Costa Mesa lease — Erewhon's first Orange County store is a huge milestone.
+
+If you're planning a grand opening activation, we'd love to bring hand-whisked organic matcha to your guests. We recently served ~90 influencers at the Benefit x Love Wellness Valentine's event in West Hollywood and developed a custom Strawberry Matcha with their team. Every drink is whisked to order in front of guests from our fully branded cart — never batched.
+
+We've worked with Meta, Adobe, Innisfree, Vuori, and other wellness and beauty brands across LA and Orange County.
+
+Would love to explore a custom matcha experience for your launch. Could you share your event date, expected guest count, and venue details?
+
+Best,
+[Your Name]
+Modo Matcha</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="result">
+      <div class="name">Northwood Space</div>
+      <div class="domain">northwoodspace.io</div>
+
+      <div class="field">
+        <div class="k">Signal</div>
+        <div class="v">Opened a new 185,000 sq ft headquarters and factory in Torrance (Aug 31, 2026), planning to add 400 jobs over three years.</div>
+      </div>
+      <div class="field">
+        <div class="k">Source</div>
+        <div class="v"><a href="https://www.northwoodspace.io/blog/northwood-opens-torrance-factory-to-mass-produce-satellite-ground-infrastructure" target="_blank" rel="noopener">northwoodspace.io/blog/&hellip;torrance-factory</a></div>
+      </div>
+
+      <div class="score-row">
+        <span class="score-num">88</span><span class="score-label">/ 100 &middot; corporate</span>
+      </div>
+      <div class="score-bar"><span style="width:88%"></span></div>
+
+      <ul class="reasons">
+        <li>Torrance is well within Modo Matcha's core LA service area, no travel fee</li>
+        <li>400 planned new hires creates strong demand for onboarding and new-hire welcome events</li>
+        <li>Recently opened facility means they're in the prime window for grand-opening celebrations</li>
+      </ul>
+
+      <details class="email">
+        <summary>View the drafted email</summary>
+        <div class="email-box">
+          <div class="email-subject">Congrats on the Torrance factory — matcha bar for your team?</div>
+          <div class="email-body">Hi there,
+
+Congrats on opening the new 185,000-square-foot facility in Torrance! With 400 hires planned over the next three years, I imagine you're thinking about how to welcome new team members and celebrate this milestone.
+
+Modo Matcha brings a mobile, organic matcha bar on-site to your space. Every drink is hand-whisked to order in front of your guests — never batched. We recently served Grant Thornton's new-hire welcome downtown, and even as the line kept forming, each matcha was whisked fresh.
+
+If you're planning an event three weeks out or more, we can fully brand the cart and cups. For anything sooner, we bring the same quality experience with our core setup.
+
+Would love to hear your event date, guest count, and venue. What works for a quick call?
+
+Best,
+[Your Name]
+Modo Matcha</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="result">
+      <div class="name">MOTHER Denim</div>
+      <div class="domain">motherdenim.com</div>
+
+      <div class="field">
+        <div class="k">Signal</div>
+        <div class="v">Opened their first flagship store in Beverly Hills with a celebrity-studded party (Aug 25, 2026) — but the flagship already runs an in-house café serving matcha daily.</div>
+      </div>
+      <div class="field">
+        <div class="k">Source</div>
+        <div class="v"><a href="https://laguestlist.com/mother-beverly-hills-flagship-store-opening-celebration-with-founders-lela-becker-and-tim-kaeding" target="_blank" rel="noopener">laguestlist.com/mother-beverly-hills-&hellip;</a></div>
+      </div>
+
+      <div class="score-row">
+        <span class="score-num">45</span><span class="score-label">/ 100 &middot; brand activation</span>
+      </div>
+      <div class="score-bar"><span style="width:45%"></span></div>
+
+      <ul class="reasons">
+        <li>Critical objection: the flagship already has an in-house café serving matcha daily — may read as redundant unless clearly positioned as one-off event entertainment, not daily service</li>
+        <li>The opening party itself already happened; the immediate window has passed</li>
+        <li>Two future launches (Palisades Village, NYC) remain genuine future opportunities</li>
+      </ul>
+
+      <details class="email">
+        <summary>View the drafted email</summary>
+        <div class="email-box">
+          <div class="email-subject">Live matcha moment for Palisades Village or NYC launch?</div>
+          <div class="email-body">Hi Lela and Tim,
+
+Congrats on the Beverly Hills flagship opening — the celebrity turnout and experiential details (conversation pit, custom embroidery) show how seriously you build retail moments.
+
+I know your in-store café already serves matcha daily. Modo Matcha does something different: we're a live, hand-whisked-to-order matcha bar for one-off launch events and activations — not daily service. Think entertainment, not beverage supply.
+
+For Benefit x Love Wellness's influencer activation in WeHo, we whisked ~90 custom Strawberry Matchas to order from a branded cart. Each drink became a photo moment.
+
+With Palisades Village opening this fall and NYC in 2027, would a live matcha experience make sense for either launch day?
+
+Happy to explore — just share your event date, expected guest count, and venue.
+
+Best,
+[Your name]</div>
+        </div>
+      </details>
+    </div>
+
+  </div>
+
+  <footer>
+    Scores range from 95 down to 45 across these three — the agent turns down its own
+    finds when the fit is genuinely weaker, rather than scoring everything as a win.
+    Built with the Strands Agents SDK on Amazon Bedrock, live search via Tavily.
+    Full write-up, architecture, and setup instructions:
+    <a href="https://github.com/mel418/modo-matcha-sales-scout" target="_blank" rel="noopener">github.com/mel418/modo-matcha-sales-scout</a>
+  </footer>
+
+</div>
+</body>
+</html>
