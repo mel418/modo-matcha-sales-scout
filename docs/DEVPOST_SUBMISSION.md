@@ -53,6 +53,79 @@ dashboard, and memory that learns from every rejection — is fully specified in
 [`SPEC.md`](https://github.com/mel418/modo-matcha-sales-scout/blob/main/SPEC.md) in the
 repo, alongside the reasoning for that architecture and a cost model.
 
+## About the project (Devpost "Project Story" field)
+
+### Inspiration
+
+This is my mom's actual business. Mōdō Matcha has booked twelve brand partners — Meta, Adobe,
+Benefit Cosmetics, Princess Polly, SEGA — in under a year of operating, and the honest number
+behind that track record is that the majority of it is inbound: word of mouth, referrals,
+agencies who already know the brand. There's no real outbound motion today, not because it
+wouldn't work, but because a one-person shop running sales, production, and delivery has never
+had a spare hour to build one. That's exactly the shape of problem this hackathon asked for —
+routine, repetitive, and only valuable in its last five percent, the judgment call of whether
+a lead is worth pursuing.
+
+### What it does
+
+Given nothing but a prompt to go find work, the agent searches the live web for a real company
+with a genuine Los Angeles or Orange County event signal — a store opening, a funding round, a
+product launch — and refuses to proceed without a real, verifiable source URL. A second pass
+scores that company's fit against Mōdō Matcha's actual business rules (service lines, real
+lead-time constraints, past case studies, the client roster) and drafts a first-touch email that
+names the specific signal and cites the one case study that matches the prospect's segment. It
+found and pitched Erewhon's newly announced Orange County location and MOTHER Denim's Beverly
+Hills flagship opening, both with real, clickable sources — not invented leads.
+
+### How we built it
+
+The agent runs on the Strands Agents SDK against Amazon Bedrock (Claude, via inference
+profiles), with Tavily as the live search tool. It's two agents, not one: a research agent that
+holds the search tool and writes up findings in plain text, then a second, tool-free agent that
+turns those findings into a validated Pydantic object — company, signal, score, reasons, and the
+drafted email. That split exists because Strands' structured-output mode and live tool use
+fight each other in a single call; separating "go find things" from "now structure what you
+found" turned out to be both the fix and, honestly, the more honest architecture anyway.
+
+### Challenges we ran into
+
+The plan going in was five specialized agents (Scout, Researcher, Scorer, Writer, Critic)
+chained by a deterministic pipeline and deployed on Bedrock AgentCore Runtime with a DynamoDB
+lead store, AgentCore Memory, and a human-approval dashboard — that's still the full design,
+written up in `SPEC.md`. The actual build window was a few hours, which meant descoping hard to
+the two-agent core loop that proves the hardest part of the idea (can an LLM genuinely find,
+verify, and pitch a real prospect end to end) without the deployment scaffolding around it.
+
+The best bug of the project: a `.env` loading order issue meant the agent's very first real run
+had no search API key at all — and it refused to invent a company rather than fail silently.
+That's not a failure, it's the anti-hallucination behavior working exactly as designed, just
+surfaced earlier and more honestly than planned.
+
+### Accomplishments that we're proud of
+
+Every output shown in this submission is real: live search results, live Bedrock calls, real
+companies, real source URLs a judge can click and verify. Nothing was mocked to make the demo
+look better than the code actually performs. And the pitch itself got more honest over the
+course of building it — the first framing was "she's too busy to prospect"; the true story,
+confirmed by the business owner, is that outbound has never existed at all. That's a better
+and truer story, and it's the one this submission tells.
+
+### What we learned
+
+That Strands' `structured_output` and tool use don't reliably compose in a single call, and
+that splitting research from structuring is the fix. That Bedrock model access and inference
+profile availability are per-account and worth verifying with a one-line test call before
+building anything on top of them. And that the most persuasive number in a pitch is sometimes
+the one you almost didn't say out loud — that this business has never had an outbound channel
+at all was a stronger hook than any efficiency claim would have been.
+
+### What's next
+
+The full system in `SPEC.md`: the five-agent deterministic pipeline, deployment on Bedrock
+AgentCore Runtime behind a scheduled EventBridge trigger, DynamoDB for lead tracking and
+dedupe, AgentCore Memory so the agent's scoring rubric improves from every real approval and
+rejection, and a human-approval dashboard so no email ever sends without an explicit yes.
+
 ## Built with
 
 Strands Agents SDK, Amazon Bedrock, Anthropic Claude, Tavily, Python, Pydantic
@@ -67,7 +140,29 @@ https://github.com/mel418/modo-matcha-sales-scout
 
 ## Live demo link
 
-[skip — not required; core loop is a local script for this submission]
+[leave blank — optional field, only a scoring bonus. A rushed deployment this late risks
+breaking something right before submitting; the README's "built vs. designed" section already
+explains why there's no hosted endpoint for this submission.]
+
+## Testing instructions (Devpost "if applicable" field)
+
+```
+git clone https://github.com/mel418/modo-matcha-sales-scout.git
+cd modo-matcha-sales-scout
+python -m venv .venv && .venv\Scripts\Activate.ps1   # source .venv/bin/activate on macOS/Linux
+pip install -r requirements.txt
+```
+
+Create a `.env` file (see `.env.example`) with a free Tavily key (app.tavily.com) and AWS
+credentials with Bedrock access in `us-east-1`. Then:
+
+```
+python -m src.scout.demo_agent
+```
+
+Takes 30-90 seconds and a few cents of Bedrock/Tavily usage per run. It will find a different
+real company each time it's run — a saved real run is also included at
+`tests/fixtures/sample_run_erewhon.txt` if you'd rather not run it live.
 
 ---
 
