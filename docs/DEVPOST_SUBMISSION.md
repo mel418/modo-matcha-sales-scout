@@ -23,7 +23,7 @@ Professional Agents
 
 **The problem.** Mōdō Matcha is a mobile matcha-bar catering company that's booked twelve
 brand partners — Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA — in under a year.
-That track record is almost entirely inbound — roughly 9 in 10 events start with someone
+That track record is almost entirely inbound — the majority of events start with someone
 reaching out first. There's no real outbound motion today: nobody is reading LA business and
 beauty press for signals, noticing who just opened a store or launched a product, judging fit,
 finding the right contact, and writing something specific enough not to sound like the
@@ -75,9 +75,10 @@ https://github.com/mel418/modo-matcha-sales-scout
 
 Don't write a script and read it — bullet points, talk naturally, one take.
 
-1. **(30s) Problem.** Say the elevator pitch out loud. Lead with the honest number: ~90% of
-   events today come from someone reaching out first — there's no real outbound motion. Show
-   the Modo Matcha site for two seconds as proof this is a real business with a real gap.
+1. **(30s) Problem.** Say the elevator pitch out loud. Lead with the honest framing: the
+   majority of events today come from someone reaching out first — there's no real outbound
+   motion. Show the Modo Matcha site for two seconds as proof this is a real business with a
+   real gap.
 2. **(30s) Who it's for.** The owner, one-person sales/production/delivery. Not a process that
    fell off her plate — a channel that's never existed because there was never a spare hour to
    build it.

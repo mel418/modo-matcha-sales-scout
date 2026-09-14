@@ -16,7 +16,7 @@ hand-whisked matcha bar and catering company serving Los Angeles and Orange Coun
 
 Mōdō Matcha books brand activations, corporate events, and weddings. Twelve brand partners in under
 a year — Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA — is a strong track record. It's also,
-honestly, almost entirely inbound: roughly nine in ten events start with someone reaching out first
+honestly, almost entirely inbound: the majority of events start with someone reaching out first
 — word of mouth, a referral from a past client, an agency who already knows the brand. There is no
 real outbound motion today. Nobody is reading the LA business press for signals, nobody is reaching
 out cold. Building that channel, well, is a daily grind with a narrow window:

@@ -14,7 +14,7 @@ Built with the [Strands Agents SDK](https://strandsagents.com), running on
 
 Mōdō Matcha books brand activations, corporate events, and weddings — twelve brand partners
 (Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA, and more) in under a year of operating.
-That track record is almost entirely inbound: roughly nine in ten events start with someone
+That track record is almost entirely inbound: the majority of events start with someone
 reaching out first — word of mouth, a referral, an agency who already knows the brand. There's no
 real outbound motion today. Building one means someone reads LA business and beauty press, notices
 who just did something that implies an event (a store opening, a funding round, a product launch),
