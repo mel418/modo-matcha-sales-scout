@@ -8,3 +8,4 @@ __pycache__/
 *.pem
 bedrock_agentcore.yaml
 .DS_Store
+reports/

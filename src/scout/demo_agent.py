@@ -19,8 +19,13 @@ See README.md "What's built vs. what's designed" for the honest breakdown.
 from __future__ import annotations
 
 import sys
+import warnings
+import webbrowser
+from html import escape
+from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")  # Windows console defaults can't render em-dashes
+warnings.filterwarnings("ignore", category=DeprecationWarning)  # Strands attributes this to the call site, not its own module
 
 from dotenv import load_dotenv
 
@@ -130,6 +135,97 @@ def run_one() -> ProspectPitch:
     return writer.structured_output(ProspectPitch, str(notes))
 
 
+REPORT_PATH = Path(__file__).resolve().parents[2] / "reports" / "latest_run.html"
+
+REPORT_TEMPLATE = """<!doctype html>
+<html><head><meta charset="utf-8"><title>Modo Matcha — Verified Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Libre+Franklin:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {{
+    --bg:#F3F0E3; --surface:#EAE5D2; --ink:#1C2116; --ink-soft:#52573F;
+    --line:#D2CAAC; --accent:#62762F; --accent-strong:#4A5C22; --accent-2:#A8823C;
+    --font-display:'Fraunces',serif; --font-body:'Libre Franklin',sans-serif; --font-mono:'IBM Plex Mono',monospace;
+  }}
+  @media (prefers-color-scheme: dark) {{
+    :root {{ --bg:#12150D; --surface:#1A1F13; --ink:#ECE7D5; --ink-soft:#AEAC90;
+             --line:#333A22; --accent:#9DB35A; --accent-strong:#B4C874; --accent-2:#D2AD68; }}
+  }}
+  * {{ box-sizing:border-box; }}
+  body {{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body);
+          padding:clamp(2rem,5vw,4rem); }}
+  .wrap {{ max-width:52rem; margin:0 auto; }}
+  .eyebrow {{ font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.14em;
+              text-transform:uppercase; color:var(--accent-2); margin-bottom:1rem; }}
+  h1 {{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.8rem,4vw,2.6rem);
+        margin:0 0 0.3rem; text-wrap:balance; }}
+  .domain {{ font-family:var(--font-mono); font-size:0.95rem; color:var(--ink-soft);
+             margin-bottom:2rem; }}
+  .card {{ background:var(--surface); border:1px solid var(--line); border-radius:6px;
+           padding:1.6rem 1.9rem; margin-bottom:1.4rem; }}
+  .row {{ display:flex; justify-content:space-between; gap:1.5rem; padding:0.55rem 0;
+          border-bottom:1px solid var(--line); }}
+  .row:last-child {{ border-bottom:none; }}
+  .k {{ font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em;
+        text-transform:uppercase; color:var(--ink-soft); white-space:nowrap; padding-top:0.15rem; }}
+  .v {{ text-align:right; font-size:0.98rem; }}
+  .v a {{ color:var(--accent-strong); word-break:break-all; }}
+  .score {{ font-family:var(--font-display); font-size:2rem; color:var(--accent-strong); }}
+  .reasons {{ margin:0; padding-left:1.2rem; }}
+  .reasons li {{ margin-bottom:0.4rem; line-height:1.4; }}
+  .email-card {{ background:var(--surface); border:1px solid var(--line); border-radius:6px;
+                 padding:1.8rem 2rem; }}
+  .email-subject {{ font-family:var(--font-display); font-weight:600; font-size:1.2rem;
+                     margin-bottom:1rem; }}
+  .email-body {{ line-height:1.6; white-space:pre-wrap; }}
+</style></head>
+<body><div class="wrap">
+  <div class="eyebrow">Verified Prospect &middot; Live Search + Bedrock</div>
+  <h1>{org_name}</h1>
+  <div class="domain">{domain}</div>
+
+  <div class="card">
+    <div class="row"><span class="k">Signal</span><span class="v">{signal_summary}</span></div>
+    <div class="row"><span class="k">Source</span><span class="v"><a href="{source_url}" target="_blank" rel="noopener">{source_url}</a></span></div>
+    <div class="row"><span class="k">Service line</span><span class="v">{service_line}</span></div>
+    <div class="row"><span class="k">Fit score</span><span class="v score">{fit_score}/100</span></div>
+  </div>
+
+  <div class="card">
+    <div class="k" style="margin-bottom:0.6rem;">Why it's a fit</div>
+    <ul class="reasons">{reasons_html}</ul>
+  </div>
+
+  <div class="email-card">
+    <div class="k" style="margin-bottom:0.6rem;">Drafted outreach &middot; cites {proof_point}</div>
+    <div class="email-subject">{email_subject}</div>
+    <div class="email-body">{email_body}</div>
+  </div>
+</div></body></html>
+"""
+
+
+def render_report(pitch: ProspectPitch) -> Path:
+    """Render a single-result report card — not the multi-lead approval dashboard
+    from SPEC.md, just a clean view of one run's output instead of terminal scroll."""
+    REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    source_url = escape(str(pitch.source_url))
+    html = REPORT_TEMPLATE.format(
+        org_name=escape(pitch.org_name),
+        domain=escape(pitch.domain or "domain unknown"),
+        signal_summary=escape(pitch.signal_summary),
+        source_url=source_url,
+        service_line=escape(pitch.service_line),
+        fit_score=pitch.fit_score,
+        reasons_html="".join(f"<li>{escape(r)}</li>" for r in pitch.fit_reasons),
+        proof_point=escape(pitch.proof_point_used),
+        email_subject=escape(pitch.email_subject),
+        email_body=escape(pitch.email_body).replace("\n", "<br>"),
+    )
+    REPORT_PATH.write_text(html, encoding="utf-8")
+    return REPORT_PATH
+
+
 def _print_pitch(pitch: ProspectPitch) -> None:
     print("\n" + "=" * 72)
     print(f"PROSPECT:      {pitch.org_name}  ({pitch.domain or 'domain unknown'})")
@@ -150,3 +246,6 @@ def _print_pitch(pitch: ProspectPitch) -> None:
 if __name__ == "__main__":
     result = run_one()
     _print_pitch(result)
+    report_path = render_report(result)
+    print(f"Report saved to {report_path}")
+    webbrowser.open(report_path.as_uri())
