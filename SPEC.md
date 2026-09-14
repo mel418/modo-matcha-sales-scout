@@ -38,7 +38,7 @@ of *"is this one worth sending?"*
 
 The owner, and every operator like them: a founder running a service business under about a dozen people
 who is simultaneously the salesperson, the producer, the account manager, and — on event day — the
-person hand-whisking matcha in front of ninety influencers. Outbound isn't a process she used to run
+person hand-whisking matcha in front of ninety influencers. Outbound isn't a process they used to run
 and let slip — it's a channel that was never built, because there was never a spare hour to build it.
 Its absence shows up not as a missed task, but as a calendar that depends entirely on other people
 remembering to call.
@@ -52,7 +52,7 @@ Mōdō Matcha is good at.
 
 So the agent doesn't optimize a process that already exists — it builds the outbound motion this
 business has never had time to build. It does the 95% that is search and reading, applies a rubric
-that learns from the owner's real decisions as she starts making them, silently discards the leads
+that learns from the owner's real decisions as they start making them, silently discards the leads
 that don't clear the bar, and surfaces only the ones where a human decision creates value: *send
 this, or don't.*
 
@@ -431,11 +431,11 @@ starting. But these five answers are what make it *hers*:
    template for what the Scout should be hunting.
 2. Typical guest-count and price bands per service line — needed for `suggested_guest_count` to be
    meaningful and for the gate threshold to reflect real economics.
-3. **The last few leads she turned down, and why.** The single highest-value input. These become the
+3. **The last few leads they turned down, and why.** The single highest-value input. These become the
    seed memories in AgentCore Memory and the `disqualifiers` list in `icp.yaml`.
 4. Who actually signs off — brand manager, office manager, or the agency's producer? This determines
    `likely_contact_role` and the register the Writer uses.
-5. Which case study lands best with which segment, in her experience. Currently inferred; better
+5. Which case study lands best with which segment, in their experience. Currently inferred; better
    confirmed.
 
 ---
@@ -481,7 +481,7 @@ non-issue instead of a cliff.
 
 AgentCore Memory holds one thing: **the owner's judgment, in their own words.**
 
-When she rejects a draft in the dashboard she gives a one-line reason. That reason is written via
+When the owner rejects a draft in the dashboard, they give a one-line reason. That reason is written via
 `create_event` against a single actor id (`owner`) with a stable session id per month. Long-term
 semantic memory strategies extract the durable version of it.
 

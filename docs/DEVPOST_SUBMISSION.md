@@ -32,8 +32,8 @@ to spend building, and its only real value shows up in the very last step anyway
 whether it's worth sending.
 
 **Who it's for.** The owner, and every operator like them: a founder running a service business
-under a dozen people, doing sales, production, and delivery herself. Outbound isn't a process
-that fell off her plate — it's a channel that's never existed, because there was never a spare
+under a dozen people, doing sales, production, and delivery themselves. Outbound isn't a process
+that fell off their plate — it's a channel that's never existed, because there was never a spare
 hour to build it, and its absence shows up as a calendar that depends entirely on other people
 remembering to call.
 
@@ -57,8 +57,9 @@ repo, alongside the reasoning for that architecture and a cost model.
 
 ### Inspiration
 
-This is my mom's actual business. Mōdō Matcha has booked twelve brand partners — Meta, Adobe,
-Benefit Cosmetics, Princess Polly, SEGA — in under a year of operating, and the honest number
+This is a real business I have a close connection to. Mōdō Matcha has booked twelve brand
+partners — Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA — in under a year of
+operating, and the honest number
 behind that track record is that the majority of it is inbound: word of mouth, referrals,
 agencies who already know the brand. There's no real outbound motion today, not because it
 wouldn't work, but because a one-person shop running sales, production, and delivery has never
@@ -106,7 +107,7 @@ surfaced earlier and more honestly than planned.
 Every output shown in this submission is real: live search results, live Bedrock calls, real
 companies, real source URLs a judge can click and verify. Nothing was mocked to make the demo
 look better than the code actually performs. And the pitch itself got more honest over the
-course of building it — the first framing was "she's too busy to prospect"; the true story,
+course of building it — the first framing was "they're too busy to prospect"; the true story,
 confirmed by the business owner, is that outbound has never existed at all. That's a better
 and truer story, and it's the one this submission tells.
 
@@ -178,7 +179,7 @@ Don't write a script and read it — bullet points, talk naturally, one take.
    motion. Show the Modo Matcha site for two seconds as proof this is a real business with a
    real gap.
 2. **(30s) Who it's for.** The owner, one-person sales/production/delivery. Not a process that
-   fell off her plate — a channel that's never existed because there was never a spare hour to
+   fell off their plate — a channel that's never existed because there was never a spare hour to
    build it.
 3. **(2 min) Show it working.** Run `python -m src.scout.demo_agent` live, on screen.
    While it's searching (takes ~30-60s), talk over it: explain what it's doing right now

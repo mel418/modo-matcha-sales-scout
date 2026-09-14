@@ -26,7 +26,7 @@ last step: deciding *"is this one worth sending?"*
 
 The owner, and every operator like them — a founder running a service business under a dozen people
 who is simultaneously the salesperson, the producer, and (on event day) the person hand-whisking
-matcha in front of ninety influencers. Outbound isn't a process that fell off her plate — it's a
+matcha in front of ninety influencers. Outbound isn't a process that fell off their plate — it's a
 channel that was never built, because a one-person shop never had a spare hour to build it.
 
 ## What this agent does
