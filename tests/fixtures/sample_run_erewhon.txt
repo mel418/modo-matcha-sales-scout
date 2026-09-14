@@ -1,0 +1,38 @@
+Modo Matcha Sales Scout — sample real run, captured 2026-09-13
+Model: us.anthropic.claude-sonnet-4-5-20250929-v1:0 via Bedrock, live Tavily search.
+This is a genuine, unedited output from src/scout/demo_agent.py — kept here as a
+backup in case the live demo has to fall back during recording.
+
+========================================================================
+PROSPECT:      Erewhon Market  (erewhon.com)
+SIGNAL:        Erewhon Market signed a lease and officially announced their first Orange County location in Costa Mesa (20,092 sq ft), scheduled to open September 2027.
+SOURCE:        https://erewhon.com/locations
+FIT SCORE:     95/100  (service line: brand_activation)
+FIT REASONS:
+  - First Orange County expansion for a luxury organic grocery chain famous for $20+ wellness smoothies and influencer culture — a major milestone likely to feature a high-profile grand opening event
+  - Recent Erewhon openings (e.g., West Hollywood Feb 2025) drew hundreds of fans and featured exclusive products, merchandise, and influencer presence — strong precedent for activation-style launch events
+  - Perfect brand alignment: Erewhon's premium wellness positioning, health-conscious audience, and experiential retail approach mirror the beauty/wellness brands Modo Matcha has served (Benefit, Love Wellness, Innisfree)
+  - Costa Mesa location serves Orange County, which is in Modo Matcha's core service area (LA and OC)
+  - September 2027 timeline provides ample lead time for fully branded cart and custom cup production (15 business days needed)
+PROOF POINT:   Benefit x Love Wellness — Valentine's influencer activation, West Hollywood. ~90 influencers, custom "Strawberry Matcha" developed with the brand team.
+------------------------------------------------------------------------
+SUBJECT: Matcha bar for Erewhon Costa Mesa's grand opening?
+
+Hi there,
+
+Congrats on signing the Costa Mesa lease — Erewhon's first Orange County store is a huge milestone.
+
+If you're planning a grand opening activation, we'd love to bring hand-whisked organic matcha to your guests. We recently served ~90 influencers at the Benefit x Love Wellness Valentine's event in West Hollywood and developed a custom Strawberry Matcha with their team. Every drink is whisked to order in front of guests from our fully branded cart — never batched.
+
+We've worked with Meta, Adobe, Innisfree, Vuori, and other wellness and beauty brands across LA and Orange County.
+
+Would love to explore a custom matcha experience for your launch. Could you share your event date, expected guest count, and venue details?
+
+Best,
+[Your Name]
+Modo Matcha
+========================================================================
+
+Additional real sources the agent found and cited during research:
+- https://www.ocbj.com/retail/erewhon-to-open-first-orange-county-store-in-2027
+- https://ktla.com/news/orange-county/erewhon-to-open-its-first-orange-county-location-in-2027
