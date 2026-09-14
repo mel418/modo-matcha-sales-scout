@@ -103,7 +103,9 @@ notes, pick the matching service line, choose exactly one proof point that
 fits the prospect's segment, and draft a first-touch email under 150 words
 that names the specific signal, cites that one proof point, respects the
 lead-time rule, and never quotes a price. Use the exact source_url from the
-notes — do not invent or alter it.
+notes — do not invent or alter it. For proof_point_used, give ONLY the short
+case-study name (e.g. "Grant Thornton") — never the full case-study
+description.
 """
 
 
@@ -115,7 +117,10 @@ class ProspectPitch(BaseModel):
     fit_score: int = Field(ge=0, le=100)
     fit_reasons: list[str] = Field(min_length=1)
     service_line: str = Field(description="brand_activation, corporate, or wedding")
-    proof_point_used: str = Field(description="Which case study the email cites")
+    proof_point_used: str = Field(
+        description="Short name only, e.g. 'Benefit x Love Wellness', 'Grant Thornton', "
+        "or 'Bel-Air Bay Club' — never the full case-study description"
+    )
     email_subject: str = Field(max_length=80)
     email_body: str
 
@@ -175,6 +180,9 @@ REPORT_TEMPLATE = """<!doctype html>
   .reasons li {{ margin-bottom:0.4rem; line-height:1.4; }}
   .email-card {{ background:var(--surface); border:1px solid var(--line); border-radius:6px;
                  padding:1.8rem 2rem; }}
+  .cite-line {{ font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.05em;
+                text-transform:uppercase; color:var(--ink-soft); margin-bottom:0.6rem;
+                white-space:normal; overflow-wrap:break-word; }}
   .email-subject {{ font-family:var(--font-display); font-weight:600; font-size:1.2rem;
                      margin-bottom:1rem; }}
   .email-body {{ line-height:1.6; white-space:pre-wrap; }}
@@ -197,7 +205,7 @@ REPORT_TEMPLATE = """<!doctype html>
   </div>
 
   <div class="email-card">
-    <div class="k" style="margin-bottom:0.6rem;">Drafted outreach &middot; cites {proof_point}</div>
+    <div class="cite-line">Drafted outreach &middot; cites {proof_point}</div>
     <div class="email-subject">{email_subject}</div>
     <div class="email-body">{email_body}</div>
   </div>
