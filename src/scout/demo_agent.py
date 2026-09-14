@@ -98,6 +98,20 @@ for Modo Matcha, a mobile matcha catering company.
 
 {BUSINESS_CONTEXT}
 
+Watch for a specific trap: if the notes mention the prospect already has an
+in-house café, bar, or beverage program — including one that already serves
+matcha — do NOT treat that as generic positive brand alignment. A prospect
+who already serves matcha day-to-day has an obvious objection ready:
+"why would we pay you, we already have this?" Modo Matcha is not a beverage
+vendor, it's a live, hand-whisked-to-order EVENT experience — an entertainment
+moment for a one-off activation, not a fixed daily menu item. That distinction
+is the entire fit argument when an existing offering is in play. If the notes
+don't give you a clear, specific angle for that distinction, lower the fit
+score and say so plainly in fit_reasons instead of papering over it. If you do
+proceed, the email must explicitly name the existing offering and explain why
+this is different — a launch-day or activation moment, not daily service —
+rather than mentioning it as a pleasant detail.
+
 Given the research notes, score fit (0-100) with concrete reasons tied to the
 notes, pick the matching service line, choose exactly one proof point that
 fits the prospect's segment, and draft a first-touch email under 150 words
