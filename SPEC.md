@@ -15,10 +15,11 @@ hand-whisked matcha bar and catering company serving Los Angeles and Orange Coun
 ### The problem
 
 Mōdō Matcha books brand activations, corporate events, and weddings. Twelve brand partners in under
-a year — Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA — is a strong close rate. The
-constraint isn't the pitch. It's finding out that a brand needs a pitch at all.
-
-Outbound prospecting for a business like this is a daily grind with a narrow window:
+a year — Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA — is a strong track record. It's also,
+honestly, almost entirely inbound: roughly nine in ten events start with someone reaching out first
+— word of mouth, a referral from a past client, an agency who already knows the brand. There is no
+real outbound motion today. Nobody is reading the LA business press for signals, nobody is reaching
+out cold. Building that channel, well, is a daily grind with a narrow window:
 
 1. Read enough of the LA business, retail, and beauty press to notice who just did something that
    implies an event — opened a store, closed a round, launched a product, hired an events producer.
@@ -28,16 +29,19 @@ Outbound prospecting for a business like this is a daily grind with a narrow win
 4. Write something specific enough that it doesn't read like the fifteenth vendor email that week.
 
 Steps 1–3 are search, reading, and bookkeeping. Step 4 is craft, but most of its inputs come from
-1–3. The whole sequence takes hours a week, and it produces value only in the last five percent —
-the judgment call of *"is this one worth sending?"*
+1–3. Doing this well takes hours a week that a one-person shop running sales, production, and
+delivery has never had spare — which is exactly why the channel has never been built, not because
+it wouldn't work. And the sequence produces value only in its last five percent — the judgment call
+of *"is this one worth sending?"*
 
 ### Who it's for
 
 The owner, and every operator like them: a founder running a service business under about a dozen people
 who is simultaneously the salesperson, the producer, the account manager, and — on event day — the
-person hand-whisking matcha in front of ninety influencers. Prospecting is the first thing that
-falls off the list when a week gets busy, and it's the thing whose absence shows up sixty days later
-as an empty calendar.
+person hand-whisking matcha in front of ninety influencers. Outbound isn't a process she used to run
+and let slip — it's a channel that was never built, because there was never a spare hour to build it.
+Its absence shows up not as a missed task, but as a calendar that depends entirely on other people
+remembering to call.
 
 ### Why it matters
 
@@ -46,9 +50,11 @@ minor, collectively expensive. It's also work that *cannot* be automated by a du
 the fit judgment is genuinely hard — it takes reading a company's actual situation and knowing what
 Mōdō Matcha is good at.
 
-So the agent does the 95% that is search and reading, applies a rubric learned from the owner's real
-past decisions, silently discards the leads that don't clear the bar, and surfaces only the ones
-where a human decision creates value: *send this, or don't.*
+So the agent doesn't optimize a process that already exists — it builds the outbound motion this
+business has never had time to build. It does the 95% that is search and reading, applies a rubric
+that learns from the owner's real decisions as she starts making them, silently discards the leads
+that don't clear the bar, and surfaces only the ones where a human decision creates value: *send
+this, or don't.*
 
 **It is not another app to check.** It runs at 6am whether or not anyone opens it. The dashboard
 exists because approvals need somewhere to happen, not because the agent needs supervision.

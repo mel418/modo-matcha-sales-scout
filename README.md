@@ -14,19 +14,20 @@ Built with the [Strands Agents SDK](https://strandsagents.com), running on
 
 Mōdō Matcha books brand activations, corporate events, and weddings — twelve brand partners
 (Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA, and more) in under a year of operating.
-The bottleneck isn't the pitch — it's finding out who needs one. Every week someone has to read
-LA business and beauty press, notice who just did something that implies an event (a store
-opening, a funding round, a product launch), judge whether they're a real fit, find the right
-contact, and write something specific enough not to read like the fifteenth vendor email that
-week. That's hours of work whose only real value is the last step: deciding *"is this one worth
-sending?"*
+That track record is almost entirely inbound: roughly nine in ten events start with someone
+reaching out first — word of mouth, a referral, an agency who already knows the brand. There's no
+real outbound motion today. Building one means someone reads LA business and beauty press, notices
+who just did something that implies an event (a store opening, a funding round, a product launch),
+judges whether they're a real fit, finds the right contact, and writes something specific enough not
+to read like the fifteenth vendor email that week. That's hours of work whose only real value is the
+last step: deciding *"is this one worth sending?"*
 
 ## Who it's for
 
 The owner, and every operator like them — a founder running a service business under a dozen people
 who is simultaneously the salesperson, the producer, and (on event day) the person hand-whisking
-matcha in front of ninety influencers. Prospecting is the first thing that falls off the list
-when a week gets busy.
+matcha in front of ninety influencers. Outbound isn't a process that fell off her plate — it's a
+channel that was never built, because a one-person shop never had a spare hour to build it.
 
 ## What this agent does
 

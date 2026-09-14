@@ -12,8 +12,8 @@ pressure — this is already honest and complete; polish is not worth spending m
 ## Elevator pitch (one line, if the form asks)
 
 An autonomous sales agent that finds real Los Angeles brands about to need an event,
-verifies the signal, and drafts the outreach email — so a small catering business never
-has to go looking for its next client.
+verifies the signal, and drafts the outreach email — giving a one-person catering business
+an outbound motion it's never had time to build.
 
 ## Track
 
@@ -23,16 +23,19 @@ Professional Agents
 
 **The problem.** Mōdō Matcha is a mobile matcha-bar catering company that's booked twelve
 brand partners — Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA — in under a year.
-The bottleneck isn't the pitch, it's finding out who needs one. Every week, someone has to
-read LA business and beauty press, notice who just opened a store or launched a product,
-judge whether they're a real fit, find the right contact, and write something specific
-enough not to sound like the fifteenth vendor email that week. That's hours of repetitive
-work whose only real value is the very last step — deciding whether it's worth sending.
+That track record is almost entirely inbound — roughly 9 in 10 events start with someone
+reaching out first. There's no real outbound motion today: nobody is reading LA business and
+beauty press for signals, noticing who just opened a store or launched a product, judging fit,
+finding the right contact, and writing something specific enough not to sound like the
+fifteenth vendor email that week. That's hours of work a one-person shop has never had time
+to spend building, and its only real value shows up in the very last step anyway — deciding
+whether it's worth sending.
 
 **Who it's for.** The owner, and every operator like them: a founder running a service business
-under a dozen people, doing sales, production, and delivery herself. Prospecting is the
-first thing that falls off the list when the week gets busy — and its absence shows up
-two months later as an empty calendar.
+under a dozen people, doing sales, production, and delivery herself. Outbound isn't a process
+that fell off her plate — it's a channel that's never existed, because there was never a spare
+hour to build it, and its absence shows up as a calendar that depends entirely on other people
+remembering to call.
 
 **How it works.** Built on the Strands Agents SDK against Amazon Bedrock. A research agent
 uses live web search to find one real company with a genuine LA/Orange County event signal
@@ -60,7 +63,7 @@ https://github.com/mel418/modo-matcha-sales-scout
 
 ## AWS Builder ID
 
-[fill in once created — profile.aws.amazon.com]
+@melohdee
 
 ## Live demo link
 
@@ -72,10 +75,12 @@ https://github.com/mel418/modo-matcha-sales-scout
 
 Don't write a script and read it — bullet points, talk naturally, one take.
 
-1. **(30s) Problem.** Say the elevator pitch out loud. Show `modomatchasummary.md` or the
-   Modo Matcha site for two seconds as proof this is a real business with a real gap.
-2. **(30s) Who it's for.** The owner, one-person sales/production/delivery. The repetitive
-   90% vs. the judgment-call 10%.
+1. **(30s) Problem.** Say the elevator pitch out loud. Lead with the honest number: ~90% of
+   events today come from someone reaching out first — there's no real outbound motion. Show
+   the Modo Matcha site for two seconds as proof this is a real business with a real gap.
+2. **(30s) Who it's for.** The owner, one-person sales/production/delivery. Not a process that
+   fell off her plate — a channel that's never existed because there was never a spare hour to
+   build it.
 3. **(2 min) Show it working.** Run `python -m src.scout.demo_agent` live, on screen.
    While it's searching (takes ~30-60s), talk over it: explain what it's doing right now
    (finding a real signal, verifying the URL). When the output prints, **click one of the
@@ -103,5 +108,5 @@ one-take recording.
 - [x] Architecture diagram — `docs/architecture.svg`
 - [ ] Demo video ≤5 min, problem/who/why + live run
 - [ ] Text description pasted into Devpost (above)
-- [ ] AWS Builder ID created and entered
+- [x] AWS Builder ID created and entered
 - [ ] Submit
