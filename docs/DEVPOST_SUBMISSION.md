@@ -57,75 +57,74 @@ repo, alongside the reasoning for that architecture and a cost model.
 
 ### Inspiration
 
-This is a real business I have a close connection to. Mōdō Matcha has booked twelve brand
-partners — Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA — in under a year of
-operating, and the honest number
-behind that track record is that the majority of it is inbound: word of mouth, referrals,
-agencies who already know the brand. There's no real outbound motion today, not because it
-wouldn't work, but because a one-person shop running sales, production, and delivery has never
-had a spare hour to build one. That's exactly the shape of problem this hackathon asked for —
-routine, repetitive, and only valuable in its last five percent, the judgment call of whether
-a lead is worth pursuing.
+This is a real business I'm close to. Mōdō Matcha has booked twelve brand partners in under
+a year. Meta, Adobe, Benefit Cosmetics, Princess Polly, SEGA. That sounds great, but almost
+all of it is inbound. People find them first. Word of mouth, referrals, agencies that already
+know the brand. There's no real outbound today. Not because it wouldn't work. Because a one
+person shop doing sales, production, and delivery has never had a spare hour to build one.
+That's exactly the kind of problem this hackathon asked for. Routine. Repetitive. And the
+only real value shows up in the last five percent, deciding if a lead is even worth chasing.
 
 ### What it does
 
-Given nothing but a prompt to go find work, the agent searches the live web for a real company
-with a genuine Los Angeles or Orange County event signal — a store opening, a funding round, a
-product launch — and refuses to proceed without a real, verifiable source URL. A second pass
-scores that company's fit against Mōdō Matcha's actual business rules (service lines, real
-lead-time constraints, past case studies, the client roster) and drafts a first-touch email that
-names the specific signal and cites the one case study that matches the prospect's segment. It
-found and pitched Erewhon's newly announced Orange County location and MOTHER Denim's Beverly
-Hills flagship opening, both with real, clickable sources — not invented leads.
+Give it nothing but a prompt to go find work. The agent searches the live web for a real
+company in LA or Orange County that just showed a signal, like a store opening, a funding
+round, or a new product launch. It won't move forward without a real link backing it up.
+Then a second pass scores how good a fit that company is, based on Mōdō Matcha's real rules:
+service lines, how much lead time we need, past case studies, the client list. Then it writes
+an email that names the exact signal and picks the one case study that actually matches. It
+found and pitched Erewhon's new Orange County location and MOTHER Denim's Beverly Hills store
+opening. Both real. Both with links you can click. Nothing made up.
 
 ### How we built it
 
-The agent runs on the Strands Agents SDK against Amazon Bedrock (Claude, via inference
-profiles), with Tavily as the live search tool. It's two agents, not one: a research agent that
-holds the search tool and writes up findings in plain text, then a second, tool-free agent that
-turns those findings into a validated Pydantic object — company, signal, score, reasons, and the
-drafted email. That split exists because Strands' structured-output mode and live tool use
-fight each other in a single call; separating "go find things" from "now structure what you
-found" turned out to be both the fix and, honestly, the more honest architecture anyway.
+It runs on the Strands Agents SDK, using Amazon Bedrock for the model, with Tavily doing the
+live search. It's two agents, not one. The first agent has the search tool and just writes up
+what it finds in plain text. The second agent has no tools. It takes that text and turns it
+into a real structured object: company, signal, score, reasons, and the email. We split it
+that way because Strands doesn't like using a tool and doing structured output in the same
+call. They fight each other. Splitting them fixed the bug. And honestly, it's just a better
+way to build it anyway.
 
 ### Challenges we ran into
 
-The plan going in was five specialized agents (Scout, Researcher, Scorer, Writer, Critic)
-chained by a deterministic pipeline and deployed on Bedrock AgentCore Runtime with a DynamoDB
-lead store, AgentCore Memory, and a human-approval dashboard — that's still the full design,
-written up in `SPEC.md`. The actual build window was a few hours, which meant descoping hard to
-the two-agent core loop that proves the hardest part of the idea (can an LLM genuinely find,
-verify, and pitch a real prospect end to end) without the deployment scaffolding around it.
+The original plan was five agents. Scout, Researcher, Scorer, Writer, Critic. All chained
+together, deployed on Bedrock AgentCore, with DynamoDB storing leads, AgentCore Memory, and a
+dashboard where a human approves every email. That's still the full plan. It's written out in
+`SPEC.md`. But we only had a few hours to actually build something. So we cut it down to two
+agents. That's the hardest part of the idea anyway: can an AI actually find a real company,
+check it's real, and write a good pitch. No deployment, no dashboard, just the core loop.
 
-The best bug of the project: a `.env` loading order issue meant the agent's very first real run
-had no search API key at all — and it refused to invent a company rather than fail silently.
-That's not a failure, it's the anti-hallucination behavior working exactly as designed, just
-surfaced earlier and more honestly than planned.
+The best bug of the whole project: the `.env` file loaded in the wrong order, so the very
+first real run had no search key at all. Instead of making up a fake company, the agent just
+said it couldn't find one. That's not a bug. That's the agent doing exactly what it's supposed
+to do. It just happened by accident before we meant it to.
 
 ### Accomplishments that we're proud of
 
-Every output shown in this submission is real: live search results, live Bedrock calls, real
-companies, real source URLs a judge can click and verify. Nothing was mocked to make the demo
-look better than the code actually performs. And the pitch itself got more honest over the
-course of building it — the first framing was "they're too busy to prospect"; the true story,
-confirmed by the business owner, is that outbound has never existed at all. That's a better
-and truer story, and it's the one this submission tells.
+Everything shown in this submission is real. Real search results, real Bedrock calls, real
+companies, real links a judge can click and check themselves. Nothing was faked to make the
+demo look better than the code actually is. The pitch also got more honest as we built it. At
+first we said the business owner was too busy to do outreach. The real story, confirmed by
+the owner, is that outreach never existed at all. That's a better story. And it's true. So
+that's the one we're telling.
 
 ### What we learned
 
-That Strands' `structured_output` and tool use don't reliably compose in a single call, and
-that splitting research from structuring is the fix. That Bedrock model access and inference
-profile availability are per-account and worth verifying with a one-line test call before
-building anything on top of them. And that the most persuasive number in a pitch is sometimes
-the one you almost didn't say out loud — that this business has never had an outbound channel
-at all was a stronger hook than any efficiency claim would have been.
+We learned that Strands structured output and tool use don't mix well in one call, and
+splitting them fixes it. We learned that Bedrock model access depends on your account, so
+it's worth testing with one simple call before building anything on top of it. And we learned
+that the most convincing line in a pitch is sometimes the one you almost don't say. Saying
+this business has never had an outbound channel at all was stronger than any efficiency pitch
+could have been.
 
 ### What's next
 
-The full system in `SPEC.md`: the five-agent deterministic pipeline, deployment on Bedrock
-AgentCore Runtime behind a scheduled EventBridge trigger, DynamoDB for lead tracking and
-dedupe, AgentCore Memory so the agent's scoring rubric improves from every real approval and
-rejection, and a human-approval dashboard so no email ever sends without an explicit yes.
+The full system is in `SPEC.md`. Five agents working in a set order. Deployed on Bedrock
+AgentCore Runtime. Triggered on a schedule with EventBridge. DynamoDB tracking every lead so
+nothing gets contacted twice. AgentCore Memory so the scoring gets smarter every time the
+owner approves or rejects something. And a dashboard so no email ever goes out without
+someone actually saying yes.
 
 ## Built with
 
