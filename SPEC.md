@@ -33,7 +33,7 @@ the judgment call of *"is this one worth sending?"*
 
 ### Who it's for
 
-Casey, and every operator like her: a founder running a service business under about a dozen people
+The owner, and every operator like them: a founder running a service business under about a dozen people
 who is simultaneously the salesperson, the producer, the account manager, and — on event day — the
 person hand-whisking matcha in front of ninety influencers. Prospecting is the first thing that
 falls off the list when a week gets busy, and it's the thing whose absence shows up sixty days later
@@ -46,7 +46,7 @@ minor, collectively expensive. It's also work that *cannot* be automated by a du
 the fit judgment is genuinely hard — it takes reading a company's actual situation and knowing what
 Mōdō Matcha is good at.
 
-So the agent does the 95% that is search and reading, applies a rubric learned from Casey's real
+So the agent does the 95% that is search and reading, applies a rubric learned from the owner's real
 past decisions, silently discards the leads that don't clear the bar, and surfaces only the ones
 where a human decision creates value: *send this, or don't.*
 
@@ -68,7 +68,7 @@ exists because approvals need somewhere to happen, not because the agent needs s
 > contact is, where the contact page lives. Every claim carries a source URL or is left null.
 >
 > The **Scorer** grades each against the ICP rubric — *and* against the seven rejection rationales
-> Casey has written since the agent went live. Two score below the gate. They're marked
+> the owner has written since the agent went live. Two score below the gate. They're marked
 > `rejected_auto` and never cost a human a second of attention.
 >
 > Three survive. The **Writer** drafts each one: names the specific signal that triggered the
@@ -80,8 +80,8 @@ exists because approvals need somewhere to happen, not because the agent needs s
 > at a corporate prospect. It goes back once and comes out better. All three are written to DynamoDB
 > as `awaiting_approval`.
 >
-> **08:30 PT.** Casey opens the dashboard over coffee. Three drafts. She approves two — SES sends
-> them. She rejects the third: *"agency, not the brand — they don't hold the activation budget."*
+> **08:30 PT.** The owner opens the dashboard over coffee. Three drafts. They approve two — SES sends
+> them. They reject the third: *"agency, not the brand — they don't hold the activation budget."*
 > That sentence is written to AgentCore Memory.
 >
 > **Tomorrow at 06:00,** the Scorer will know that.
@@ -278,9 +278,9 @@ class FitScore(BaseModel):
 
 This is the stage where the system's accumulated judgment lives. Its prompt is assembled from three
 sources: the static rubric in `config/icp.yaml`, the `CompanyProfile`, and the top-k relevant
-memories retrieved from AgentCore Memory (§8) — Casey's own past rejection rationales, in her words.
+memories retrieved from AgentCore Memory (§8) — the owner's own past rejection rationales, in their words.
 
-**Failure mode it guards against:** scoring drift, and the rubric silently diverging from what Casey
+**Failure mode it guards against:** scoring drift, and the rubric silently diverging from what the owner
 actually believes. Every score must cite specific profile evidence in `reasons`, which makes a bad
 score legible rather than mysterious.
 
@@ -293,7 +293,7 @@ if fit.tier == "disqualified" or fit.score < settings.SCORE_THRESHOLD:  # defaul
 ```
 
 The single most important line in the system, for two reasons. It is the mechanism by which the
-agent respects the human's attention — a bad lead costs Casey nothing, not even a glance. And it is
+agent respects the human's attention — a bad lead costs the owner nothing, not even a glance. And it is
 the largest cost lever in the whole pipeline, because everything downstream of it runs on Opus 5
 (§11).
 
@@ -329,7 +329,7 @@ Hard requirements, stated in the system prompt and enforced by the Critic:
   `config/business.yaml`, not from the model's memory.
 - **Never quote a price.** Mōdō Matcha quotes per event after learning date, guest count, and venue.
   The email's call to action is to share those three things.
-- **Under 150 words.** Casey's own booking funnel is three steps; the email should read like the
+- **Under 150 words.** Mōdō Matcha's own booking funnel is three steps; the email should read like the
   first one.
 
 ### 4.6 Critic
@@ -351,7 +351,7 @@ class CritiqueResult(BaseModel):
 ```
 
 Exactly **one** revision loop — if the revision still fails, the draft is stored with
-`critic_issues` attached and shown to Casey flagged rather than hidden. A human seeing a flawed draft
+`critic_issues` attached and shown to the owner flagged rather than hidden. A human seeing a flawed draft
 labelled *"the critic wasn't happy with the opener"* is more useful than an empty queue.
 
 The critic checks: generic opener; any factual claim not traceable to the profile; wrong service line
@@ -416,7 +416,7 @@ This is also what makes the *"generalizes to any local service business"* claim 
 aspirational. Swap the four YAML files and the same pipeline prospects for a photographer, a florist,
 or a mobile bartending company. The README should demonstrate this with a second config directory.
 
-### Questions for Casey (turns the rubric from guesswork into ground truth)
+### Questions for the owner (turns the rubric from guesswork into ground truth)
 
 The rubric ships with defensible defaults derived from the public site, so this does not block
 starting. But these five answers are what make it *hers*:
@@ -473,22 +473,22 @@ non-issue instead of a cliff.
 
 ## 8. Memory
 
-AgentCore Memory holds one thing: **Casey's judgment, in her own words.**
+AgentCore Memory holds one thing: **the owner's judgment, in their own words.**
 
 When she rejects a draft in the dashboard she gives a one-line reason. That reason is written via
-`create_event` against a single actor id (`casey`) with a stable session id per month. Long-term
+`create_event` against a single actor id (`owner`) with a stable session id per month. Long-term
 semantic memory strategies extract the durable version of it.
 
 On each subsequent run, the Scorer retrieves the top-k memories relevant to the current
 `CompanyProfile` and includes them in its prompt under an explicit heading:
 
 ```
-## What Casey has told you before
+## What the owner has told you before
 - "Agencies without the activation budget aren't worth it — go to the brand."
 - "Anything under 50 people isn't worth the travel unless it's downtown."
 ```
 
-The system gets better at Casey's job by watching Casey do Casey's job. That is the strongest thing
+The system gets better at the owner's job by watching the owner do the owner's job. That is the strongest thing
 in the pitch, and it costs one text field in the dashboard.
 
 Wrapped in `src/scout/memory.py` behind a two-method interface (`remember(text)`,
@@ -520,7 +520,7 @@ than in a prompt:
 ### On real sending
 
 SES is in **sandbox** on this account (`ProductionAccessEnabled: false`), with zero verified
-identities today. Demo sends therefore go only to addresses verified in advance — Casey's, the
+identities today. Demo sends therefore go only to addresses verified in advance — the owner's, the
 builder's, and a couple of test inboxes.
 
 **This is a deliberate scope decision, not a limitation to apologize for.** The agent drafts real
@@ -586,7 +586,7 @@ modo-matcha-sales-scout/
 │
 └── scripts/
     ├── verify_ses.py             # verify demo recipient identities
-    ├── seed_memories.py          # load Casey's past rejections
+    ├── seed_memories.py          # load the owner's past rejections
     └── run_local.py              # pipeline without AgentCore, against fixtures or live
 ```
 
@@ -646,7 +646,7 @@ Upgrade the AWS CLI (2.27 has no `bedrock-agentcore` commands — hard blocker).
 `pyproject.toml`. Install `strands-agents`, `strands-agents-tools`, `bedrock-agentcore`,
 `bedrock-agentcore-starter-toolkit`. Tavily key. Confirm Bedrock model access with a one-line
 `BedrockModel` call against `us.anthropic.claude-sonnet-5`. Write all four config YAMLs and every
-Pydantic model in `models.py`. Send Casey the five questions from §6.
+Pydantic model in `models.py`. Send the owner the five questions from §6.
 
 **Days 3–4 — Pipeline, local, offline.**
 All five agents. `store.py` + DynamoDB table. `pipeline.py`. Capture Tavily fixtures on the first
@@ -689,7 +689,7 @@ day 11, not day 12** — leave a full day of slack.
 | SES verification lead time | Can't demo the send | Verify identities on day 1. It's a two-minute task with an email round-trip. |
 | Credits exhausted before submission | Can't run the demo | Fixture-first development, `MAX_LEADS_PER_RUN=6`, every-other-day runs. Set an AWS budget alert at $35 on day 1. |
 | Opus 5 thinking tokens double the estimate | Budget overrun | Cost knobs in §11, ordered by leverage. Watch actual spend after the first three live runs. |
-| Casey's answers arrive late | Rubric stays generic | Defaults ship on day 2 and are tunable to the last day — the rubric is a YAML file, not code. |
+| The owner's answers arrive late | Rubric stays generic | Defaults ship on day 2 and are tunable to the last day — the rubric is a YAML file, not code. |
 
 ---
 
@@ -783,6 +783,6 @@ client.invoke_agent_runtime(
    before trusting §11.
 2. **Reasoning-effort parameter shape** for `BedrockModel` — the cost knob in §11 item 5 is
    unverified. Check the Strands model-provider docs before using it.
-3. **Casey's five answers** (§6) — defaults ship without them; the rubric improves materially with them.
+3. **The owner's five answers** (§6) — defaults ship without them; the rubric improves materially with them.
 4. **Bedrock model access** — inference profiles exist in the account, but per-model access has not
    been exercised. One live call on day 1 settles it.

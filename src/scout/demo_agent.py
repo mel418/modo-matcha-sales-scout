@@ -22,6 +22,10 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8")  # Windows console defaults can't render em-dashes
 
+from dotenv import load_dotenv
+
+load_dotenv()  # must run before importing strands_tools.tavily, which reads TAVILY_API_KEY at import time
+
 from pydantic import BaseModel, Field, HttpUrl
 from strands import Agent
 from strands.models import BedrockModel

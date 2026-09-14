@@ -29,7 +29,7 @@ judge whether they're a real fit, find the right contact, and write something sp
 enough not to sound like the fifteenth vendor email that week. That's hours of repetitive
 work whose only real value is the very last step — deciding whether it's worth sending.
 
-**Who it's for.** Casey, and every operator like her: a founder running a service business
+**Who it's for.** The owner, and every operator like them: a founder running a service business
 under a dozen people, doing sales, production, and delivery herself. Prospecting is the
 first thing that falls off the list when the week gets busy — and its absence shows up
 two months later as an empty calendar.
@@ -74,7 +74,7 @@ Don't write a script and read it — bullet points, talk naturally, one take.
 
 1. **(30s) Problem.** Say the elevator pitch out loud. Show `modomatchasummary.md` or the
    Modo Matcha site for two seconds as proof this is a real business with a real gap.
-2. **(30s) Who it's for.** Casey, one-person sales/production/delivery. The repetitive
+2. **(30s) Who it's for.** The owner, one-person sales/production/delivery. The repetitive
    90% vs. the judgment-call 10%.
 3. **(2 min) Show it working.** Run `python -m src.scout.demo_agent` live, on screen.
    While it's searching (takes ~30-60s), talk over it: explain what it's doing right now

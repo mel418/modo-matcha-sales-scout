@@ -439,7 +439,7 @@ Must print `true`. If `false`, the link hasn't been clicked yet.
 
 ---
 
-## 1.8 — Send Casey the five questions
+## 1.8 — Send the owner the five questions
 
 ### Why
 
@@ -467,7 +467,7 @@ the scoring rubric. Send it today; the rubric ships with defaults either way so 
 - [ ] **Both Claude models replied** ← the one that matters
 - [ ] Tavily key in `.env`
 - [ ] SES identity `VerifiedForSendingStatus: true`
-- [ ] Questions sent to Casey
+- [ ] Questions sent to the owner
 
 **If the Bedrock call failed and you couldn't fix it, stop and solve that before day 2.** Everything
 downstream assumes it works.
@@ -584,7 +584,7 @@ python -c "from src.scout.settings import settings; print(settings.model_score, 
 
 ### Why
 
-Per SPEC §6, nothing about Modo Matcha is hardcoded in Python. Two payoffs: Casey's answers become a
+Per SPEC §6, nothing about Modo Matcha is hardcoded in Python. Two payoffs: the owner's answers become a
 YAML edit rather than a code change, and the "generalizes to any local service business" claim in
 your pitch is demonstrably true rather than aspirational.
 
@@ -640,7 +640,7 @@ credibility_line: "Twelve brand partners in under a year of operating."
 > The `segments` tags are what let the Writer pick the *right* case study. A wedding story sent to an
 > office manager is exactly the mistake the Critic exists to catch.
 
-**`icp.yaml`** — the scoring rubric. Start with defaults; tune with Casey's answers:
+**`icp.yaml`** — the scoring rubric. Start with defaults; tune with the owner's answers:
 
 ```yaml
 threshold: 65

@@ -23,7 +23,7 @@ sending?"*
 
 ## Who it's for
 
-Casey, and every operator like her — a founder running a service business under a dozen people
+The owner, and every operator like them — a founder running a service business under a dozen people
 who is simultaneously the salesperson, the producer, and (on event day) the person hand-whisking
 matcha in front of ninety influencers. Prospecting is the first thing that falls off the list
 when a week gets busy.
